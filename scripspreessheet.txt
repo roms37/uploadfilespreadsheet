@@ -5,7 +5,7 @@ function intialSetup () {
   var activeSpreadsheet = SpreadsheetApp.getActiveSpreadsheet()
   scriptProp.setProperty('key', activeSpreadsheet.getId())
 // ID_FOLDER  ganti dengan id folder tujuan
-  scriptProp.setProperty('folder', 'id folder')
+  scriptProp.setProperty('folder', '1HlgclEJQUTVd7uxf3RDmBcPo6XAabLrS')
 }
 
 function doPost (e) {
@@ -19,7 +19,7 @@ function doPost (e) {
     var mimetype = kk.match(/(?<=data:).*?(?=;)/gim)?.[0]
     var decode = Utilities.base64Decode(base64, Utilities.Charset.UTF_8)
    // parameter ke 3 nama filenya, itu yang perlu diubah 
-    var blob = Utilities.newBlob(decode, mimetype, Date.now() + "." + mimetype.split('/')[1]) 
+    var blob = Utilities.newBlob(decode, mimetype, `${e.parameter.nama}_${Date.now()}.${mimetype.split('/')[1]}`)
     var file = DriveApp.getFolderById(scriptProp.getProperty('folder')).createFile(blob)
     e.parameter.foto_kk = file.getUrl()
 
@@ -29,7 +29,7 @@ function doPost (e) {
     var mimetype = ktp.match(/(?<=data:).*?(?=;)/gim)?.[0]
     var decode = Utilities.base64Decode(base64, Utilities.Charset.UTF_8)
    // parameter ke 3 nama filenya, itu yang perlu diubah 
-    var blob = Utilities.newBlob(decode, mimetype, Date.now() + "." + mimetype.split('/')[1]) 
+  var blob = Utilities.newBlob(decode, mimetype, `${e.parameter.nama}_${Date.now()}.${mimetype.split('/')[1]}`)
     var file = DriveApp.getFolderById(scriptProp.getProperty('folder')).createFile(blob)
     e.parameter.foto_ktp = file.getUrl()
 
